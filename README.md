@@ -1,4 +1,4 @@
-# Gravity-Forms-Prepopulate
+# Gravity Forms Pre-Populate
 ### Based on [Sean Tierney's](https://github.com/scrollinondubs/Gravity-Forms-Prepopulate) Work
 This plugin is a Gravity Forms add-on that allows you to automatically cookie parameters passed in via the querystring and preserve them until a lead form is submitted. It's especially useful if you're tracking UTM Parameters and hoping to store the originating UTM params even if the user signs up on a subsequent page (or even subsequent visit). Cookied params can be passed as hidden fields via Gravity Forms.
 
