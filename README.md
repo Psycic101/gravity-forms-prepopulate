@@ -1,9 +1,26 @@
 # Gravity-Forms-Prepopulate
-### Based on (https://github.com/scrollinondubs/Gravity-Forms-Prepopulate)Sean Tierney's Work
+### Based on [Sean Tierney's](https://github.com/scrollinondubs/Gravity-Forms-Prepopulate) Work
 This plugin is a Gravity Forms add-on that allows you to automatically cookie parameters passed in via the querystring and preserve them until a lead form is submitted. It's especially useful if you're tracking UTM Parameters and hoping to store the originating UTM params even if the user signs up on a subsequent page (or even subsequent visit). Cookied params are passed as hidden fields via Gravity Forms. This will also capture 2 fields implicitly on every form submit: originating HTTP Referer and the Request_URI (page from which the form was submitted).
 
 Here is a screencast serving as loose documentation showing how to install, configure and use this plugin: http://www.screencast.com/t/KDV0Tato
+- Screencast was prior to my edits
 
-Basically you just need to specify under Plugins > Gravity Prepopulate the comma-delim list of querystring params you're capturing and passing via hidden fields. If you happen to be using Active Campaign this plugin also implements their Site Tracking automatically provided you specify your Active Campaign Site ID.
+## Setup Instructions
+* First install the plugin by copying the contents to the wp-content/plugins folder
+* Go to Forms > Settings > Prepopulate
+* In here, type in your query parameters seperated by commas. I.e; utm_source,utm_campaign,random_query
+* Click Update Settings
 
-Please post any questions on this page. This plugin is unsupported and provided free of charge courtesy of Grid7. By using this plugin you indemnify Grid7, LLC against any liability and assume all risk associated with usage of this free plugin.
+Once you have set this up, whenever a user gets to your website with any of those query parameters attached to the url, it will be stored as a cookie. Next, you will need to populate fields with the specific parameters:
+
+* Go to the form you would like to edit
+* Add an input field. This can be any input type including hidden fields
+* Click on the Advanced tab of the input settings
+* Check "Allow field to be populated dynamically"
+* Input the parameter exactly the way you typed it before. I.e; utm_source
+* Click Update Form
+
+## Changelog
+### 0.1.1
+* Removed Active Campaign input to make form more generic
+* Moved settings under Gravity Forms instead of Plugins submenu

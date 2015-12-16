@@ -49,10 +49,6 @@ if (class_exists("GFForms")) {
             add_action("init", array($this, "prepopulate_frontend"), 10, 2);
         }
 
-        public function init_admin(){
-            parent::init_admin();
-        }
-
         public function plugin_settings_fields() {
             return array(
                 array(
@@ -68,19 +64,6 @@ if (class_exists("GFForms")) {
                         )
                     )
                 ), 
-                array(
-                    "title"  => "Pre-Populate Settings",
-                    "fields" => array(
-                        array(
-                            "name"    => "parameters",
-                            "tooltip" => "Example: utm_source,utm_campaign,utm_medium",
-                            "label"   => "Query Parameters",
-                            "type"    => "text",
-                            "class"   => "large",
-                            "feedback_callback" => array($this, "update_prepop_options")
-                        )
-                    )
-                )
             );
         }
 
