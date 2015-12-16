@@ -22,5 +22,6 @@ Once you have set this up, whenever a user gets to your website with any of thos
 
 ## Changelog
 ### 0.1.1
+* Works in MultiSite environment where there is no dropdown for plugin menu
 * Removed Active Campaign input to make form more generic
 * Moved settings under Gravity Forms instead of Plugins submenu
