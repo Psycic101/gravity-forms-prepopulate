@@ -3,7 +3,7 @@
 Plugin Name: Gravity Forms Pre-Populate
 Plugin URI: http://mediacause.org
 Description: A simple addon to prepopulate fields based on query parameters. 
-Version: 0.1
+Version: 0.1.1
 Author: Asitha de Silva
 Author URI: http://asithadesilva.com
 
@@ -81,13 +81,6 @@ if (class_exists("GFForms")) {
                 if (isset($_GET[$key])){
                     setcookie($key, htmlspecialchars($_GET[$key], ENT_QUOTES), time() + 99999999, '/', NULL);
                 }
-            }
-
-            if (isset($_COOKIE['HTTP_REFERER'])) {
-                $_POST['input_-2']=htmlspecialchars($_COOKIE['HTTP_REFERER']);
-            } elseif(isset($_SERVER['HTTP_REFERER']) and $_SERVER['HTTP_REFERER']!='') {
-                setcookie('HTTP_REFERER', htmlspecialchars($_SERVER['HTTP_REFERER'], ENT_QUOTES), time() + 99999999, '/', NULL);
-                $_POST['input_-2']=htmlspecialchars($_SERVER['HTTP_REFERER']);
             }
 
             foreach ($gravitypopulate as $key) {
