@@ -3,7 +3,7 @@
 Plugin Name: Gravity Forms Pre-Populate
 Plugin URI: http://mediacause.org
 Description: A simple addon to prepopulate fields based on query parameters. 
-Version: 0.1.1
+Version: 0.1
 Author: Asitha de Silva
 Author URI: http://asithadesilva.com
 
@@ -40,8 +40,23 @@ if (class_exists("GFForms")) {
         protected $_title = "Gravity Forms Pre-Populate";
         protected $_short_title = "Prepopulate";
 
-        public function init(){
-            parent::init();
+        public function init_frontend(){
+            parent::init_frontend();
+
+            $gravitypopulate = explode(',', esc_attr(get_option('gravitypopulate_options')));
+            $gravitypopulate = array_map('trim', $gravitypopulate);
+
+            foreach ($gravitypopulate as $key) {
+                add_filter('gform_field_value_' . $key, function($arg) use ($key){
+                    if (isset($_GET[$key])) {
+                        return htmlspecialchars($_GET[$key], ENT_QUOTES);
+                    } else if (isset($_COOKIE[$key])) {
+                        return htmlspecialchars($_COOKIE[$key], ENT_QUOTES);
+                    } else {
+                        return '';
+                    }
+                }, -999);
+            }            
         }
 
         public function pre_init() {
@@ -81,18 +96,6 @@ if (class_exists("GFForms")) {
                 if (isset($_GET[$key])){
                     setcookie($key, htmlspecialchars($_GET[$key], ENT_QUOTES), time() + 99999999, '/', NULL);
                 }
-            }
-
-            foreach ($gravitypopulate as $key) {
-                add_filter('gform_field_value_' . $key, function($arg) use ($key){
-                    if (isset($_GET[$key])) {
-                        return htmlspecialchars($_GET[$key], ENT_QUOTES);
-                    } else if (isset($_COOKIE[$key])) {
-                        return htmlspecialchars($_COOKIE[$key], ENT_QUOTES);
-                    } else {
-                        return '';
-                    }
-                }, -999);
             }
         }
     }
